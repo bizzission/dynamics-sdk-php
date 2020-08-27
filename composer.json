@@ -24,13 +24,17 @@
     },
     "autoload": {
         "files": [
-            "src/OData/Core/helpers.php",
-            "tests/DynamicsTestCase.php"
+            "src/OData/Core/helpers.php"
         ],
         "psr-4": {
             "SaintSystems\\OData\\": "src/OData",
             "Microsoft\\Dynamics\\": "src/Dynamics"
         }
+    },
+    "autoload-dev": {
+        "files": [
+            "tests/DynamicsTestCase.php"
+        ]
     },
     "config": {
         "preferred-install": "dist"
