@@ -16,7 +16,7 @@
         "guzzle/guzzle": "*",
         "monolog/monolog": "^1.22",
         "nesbot/carbon": "^1.22",
-        "illuminate/support": "^5.4"
+        "illuminate/support": "^4.1"
     },
     "require-dev": {
         "phpunit/phpunit": "5.5.*",
