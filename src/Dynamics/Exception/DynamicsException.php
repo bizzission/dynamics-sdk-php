@@ -17,6 +17,8 @@
 
 namespace Microsoft\Dynamics\Exception;
 
+use Exception;
+
 /**
  * Class DynamicsException
  *
@@ -25,14 +27,14 @@ namespace Microsoft\Dynamics\Exception;
  * @license  https://opensource.org/licenses/MIT MIT License
  * @link     https://www.microsoft.com/en-us/dynamics365/
  */
-class DynamicsException extends \Exception
+class DynamicsException extends Exception
 {
     /**
     * Construct a new DynamicsException handler
     *
     * @param string    $message  The error to send
     * @param int       $code     The error code associated with the error
-    * @param \Exception $previous The last error sent, defaults to null
+    * @param Exception $previous The last error sent, defaults to null
     */
     public function __construct($message, $code = 0, $previous = null)
     {

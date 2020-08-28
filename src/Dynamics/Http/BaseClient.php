@@ -52,6 +52,7 @@ class BaseClient implements IBaseClient
 
     /**
      * Gets the IAuthenticationProvider for authenticating requests.
+     * @return Closure|IAuthenticationProvider
      * @var IAuthenticationProvider
      */
     public function getAuthenticationProvider()
@@ -90,6 +91,7 @@ class BaseClient implements IBaseClient
 
     /**
      * Gets the IHttpProvider for sending HTTP requests.
+     * @return HttpProvider|IHttpProvider
      * @var IHttpProvider
      */
     public function getHttpProvider()

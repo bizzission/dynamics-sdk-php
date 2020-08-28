@@ -3,6 +3,8 @@
 namespace Microsoft\Dynamics\Http;
 
 use ArrayAccess;
+use Microsoft\Dynamics\Exception\DynamicsException;
+
 //use Microsoft\Dynamics\Model\Entity;
 
 /**
@@ -74,6 +76,7 @@ class EntityRequestBuilder extends BaseRequestBuilder implements IEntityRequestB
     /**
      * Builds the request.
      * @return EntityRequest The built request.
+     * @throws DynamicsException
      */
     public function request() //:IEntityRequest
     {
@@ -84,6 +87,7 @@ class EntityRequestBuilder extends BaseRequestBuilder implements IEntityRequestB
      * Builds the request.
      * @param array $options The query and header options for the request.
      * @return EntityRequest The built request.
+     * @throws DynamicsException
      */
     public function requestWithOptions($options)
     {

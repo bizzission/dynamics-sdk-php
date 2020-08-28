@@ -17,7 +17,7 @@
 
 namespace Microsoft\Dynamics;
 
-use Microsoft\Dynamics\Constants;
+//use Microsoft\Dynamics\Constants;
 use Microsoft\Dynamics\Http\DynamicsCollectionRequest;
 use Microsoft\Dynamics\Http\DynamicsRequest;
 use Microsoft\Dynamics\Exception\DynamicsException;

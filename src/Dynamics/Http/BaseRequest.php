@@ -28,6 +28,7 @@ class BaseRequest implements IBaseRequest
      * @param IBaseClient $client
      * @param string|null $returnType
      * @param array|null $options
+     * @throws DynamicsException
      */
     public function __construct(
         string $requestUrl,
@@ -250,6 +251,7 @@ class BaseRequest implements IBaseRequest
      * <returns>The request URL minus query string.</returns>
      * @param $requestUrl
      * @return string
+     * @throws DynamicsException
      */
     private function initializeUrl($requestUrl)
     {
