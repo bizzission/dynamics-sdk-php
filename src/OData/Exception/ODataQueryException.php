@@ -16,6 +16,8 @@
 
 namespace SaintSystems\OData\Exception;
 
+use Exception;
+
 /**
  * Class ODataQueryException
  *
@@ -30,7 +32,7 @@ class ODataQueryException extends ODataException
     *
     * @param string    $message  The error to send
     * @param int       $code     The error code associated with the error
-    * @param \Exception $previous The last error sent, defaults to null
+    * @param Exception $previous The last error sent, defaults to null
     */
     public function __construct($message, $code = 0, $previous = null)
     {

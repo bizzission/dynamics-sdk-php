@@ -2,7 +2,8 @@
 
 namespace SaintSystems\OData;
 
-use GuzzleHttp\Client;
+use Guzzle\Http\Client;
+//use GuzzleHttp\Client;
 
 class GuzzleHttpProvider implements IHttpProvider
 {

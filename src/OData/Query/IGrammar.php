@@ -2,6 +2,8 @@
 
 namespace SaintSystems\OData\Query;
 
+use Illuminate\Database\Query\Expression;
+
 interface IGrammar
 {
     /**
@@ -41,7 +43,7 @@ interface IGrammar
     /**
      * Get the value of a raw expression.
      *
-     * @param \Illuminate\Database\Query\Expression $expression
+     * @param Expression $expression
      *
      * @return string
      */

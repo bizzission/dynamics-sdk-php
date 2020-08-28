@@ -3,6 +3,7 @@
 namespace SaintSystems\OData\Query;
 
 use Closure;
+use InvalidArgumentException;
 
 class ExpandClause extends Builder
 {
@@ -48,14 +49,14 @@ class ExpandClause extends Builder
      *
      * on `contacts`.`user_id` = `users`.`id`  and `contacts`.`info_id` = `info`.`id`
      *
-     * @param \Closure|string $first
+     * @param Closure|string $first
      * @param string|null     $operator
      * @param string|null     $second
      * @param string          $boolean
      *
      * @return $this
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function on($first, $operator = null, $second = null, $boolean = 'and')
     {
@@ -69,7 +70,7 @@ class ExpandClause extends Builder
     /**
      * Add an "or on" clause to the join.
      *
-     * @param \Closure|string $first
+     * @param Closure|string $first
      * @param string|null     $operator
      * @param string|null     $second
      *

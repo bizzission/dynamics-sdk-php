@@ -330,7 +330,7 @@ class ODataRequest implements IODataRequest
 
     /**
      * Adds all of the headers from the header collection to the request.
-     * @param \SaintSystems\OData\HttpRequestMessage $request The HttpRequestMessage representation of the request.
+     * @param HttpRequestMessage $request The HttpRequestMessage representation of the request.
      */
     private function addHeadersToRequest(HttpRequestMessage $request)
     {

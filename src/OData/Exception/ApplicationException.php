@@ -16,6 +16,8 @@
 
 namespace SaintSystems\OData\Exception;
 
+use Exception;
+
 /**
  * Class ApplicationException
  *
@@ -23,14 +25,14 @@ namespace SaintSystems\OData\Exception;
  * @package  SaintSystems.OData
  * @license  https://opensource.org/licenses/MIT MIT License
  */
-class ApplicationException extends \Exception
+class ApplicationException extends Exception
 {
     /**
     * Construct a new Dynamics Exception handler
     *
     * @param string    $message  The error to send
     * @param int       $code     The error code associated with the error
-    * @param \Exception $previous The last error sent, defaults to null
+    * @param Exception $previous The last error sent, defaults to null
     */
     public function __construct($message, $code = 0, $previous = null)
     {
