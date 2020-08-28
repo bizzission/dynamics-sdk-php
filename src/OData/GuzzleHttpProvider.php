@@ -68,7 +68,7 @@ class GuzzleHttpProvider implements IHttpProvider
             'timeout' => $this->timeout,
         );
 
-        if ($request->method === HttpMethod::POST || $request->method === HttpMethod::PUT) {
+        if ($request->method == HttpMethod::POST || $request->method == HttpMethod::PUT) {
             $options['body'] = $request->body;
         }
         

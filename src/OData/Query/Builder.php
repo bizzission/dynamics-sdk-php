@@ -342,7 +342,7 @@ class Builder
         list($value, $operator) = $this->prepareValueAndOperator(
             $value,
             $operator,
-            func_num_args() === 2
+            func_num_args() == 2
         );
 
         // If the columns is actually a Closure instance, we will assume the developer
@@ -499,7 +499,7 @@ class Builder
      */
     protected function invalidOperatorAndValue($operator, $value)
     {
-        return is_null($value) && in_array($operator, $this->operators, true) &&
+        return is_null($value) && in_array($operator, $this->operators) &&
             !in_array($operator, array('=', '<>', '!='));
     }
 

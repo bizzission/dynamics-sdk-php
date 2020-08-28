@@ -672,7 +672,7 @@ class Entity implements ArrayAccess
      */
     public function isGuarded($key)
     {
-        return in_array($key, $this->getGuarded(), true) || $this->getGuarded() === array('*');
+        return in_array($key, $this->getGuarded()) || $this->getGuarded() == array('*');
     }
 
     /**
@@ -682,7 +682,7 @@ class Entity implements ArrayAccess
      */
     public function totallyGuarded()
     {
-        return count($this->getFillable()) === 0 && $this->getGuarded() === array('*');
+        return count($this->getFillable()) == 0 && $this->getGuarded() == array('*');
     }
 
     /**
@@ -902,7 +902,7 @@ class Entity implements ArrayAccess
      */
     protected function getCastType($key)
     {
-        return strtolower(trim($this->getCasts()[$key]));
+        return trim(strtolower($this->getCasts()[$key]));
     }
 
     /**
@@ -1018,7 +1018,7 @@ class Entity implements ArrayAccess
     /**
      * Convert a DateTime to a storable string.
      *
-     * @param DateTime|int  $value
+     * @param  \DateTime|int  $value
      * @return string
      */
     public function fromDateTime($value)
@@ -1034,7 +1034,7 @@ class Entity implements ArrayAccess
      * Return a timestamp as DateTime object.
      *
      * @param  mixed  $value
-     * @return Carbon
+     * @return \Carbon\Carbon
      */
     protected function asDateTime($value)
     {
@@ -1398,7 +1398,7 @@ class Entity implements ArrayAccess
         // If the property is listed as a date, we will convert it to a DateTime
         // instance on retrieval, which makes it quite convenient to work with
         // date fields without having to create a mutator for each property.
-        if (in_array($key, $this->getDates(), true) && !is_null($value)) {
+        if (in_array($key, $this->getDates()) && !is_null($value)) {
             return $this->asDateTime($value);
         }
 

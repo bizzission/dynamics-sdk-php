@@ -110,7 +110,7 @@ class ODataRequest implements IODataRequest
     {
         if (is_null($returnClass)) return $this;
         $this->returnType = $returnClass;
-        if (strcasecmp($this->returnType, 'stream') === 0) {
+        if (strcasecmp($this->returnType, 'stream') == 0) {
             $this->returnsStream  = true;
         } else {
             $this->returnsStream = false;
