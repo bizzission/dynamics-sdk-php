@@ -162,8 +162,10 @@ class ODataResponse
     public function getSkipToken()
     {
         if (array_key_exists(Constants::ODATA_NEXT_LINK, $this->getBody())) {
-            $nextLink = $this->getBody()[Constants::ODATA_NEXT_LINK];
-            $url = explode("?", $nextLink)[1];
+            $tempArray = $this->getBody();
+            $nextLink = $tempArray[Constants::ODATA_NEXT_LINK];
+            $nextLinkTemp = $nextLink[1];
+            $url = explode("?", $nextLinkTemp);
             $url = explode("skiptoken=", $url);
             if (count($url) > 1) {
                 return $url[1];
@@ -181,7 +183,8 @@ class ODataResponse
     public function getId()
     {
         if (array_key_exists(Constants::ODATA_ID, $this->getHeaders())) {
-            $id = $this->getBody()[Constants::ODATA_ID];
+            $tempArray = $this->getBody();
+            $id = $tempArray[Constants::ODATA_ID];
             return $id;
         }
         return null;

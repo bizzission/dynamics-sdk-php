@@ -903,7 +903,8 @@ class Entity implements ArrayAccess
      */
     protected function getCastType($key)
     {
-        return trim(strtolower($this->getCasts()[$key]));
+        $tempArray = $this->getCasts();
+        return trim(strtolower($tempArray[$key]));
     }
 
     /**
