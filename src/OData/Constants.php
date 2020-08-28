@@ -36,7 +36,9 @@ class Constants
 
     // Define error constants
     const MAX_PAGE_SIZE = 999;
-    const MAX_PAGE_SIZE_ERROR = 'Page size must be less than ' . self::MAX_PAGE_SIZE;
+    // TODO: WHere it's called should add the text and from here add self::MAX_PAGE_SIZE;
+//    const MAX_PAGE_SIZE_ERROR = 'Page size must be less than ' . self::MAX_PAGE_SIZE;
+    const MAX_PAGE_SIZE_ERROR = 'Page size must be less than ';
     const TIMEOUT = 'Timeout error';
 
     // Define error message constants

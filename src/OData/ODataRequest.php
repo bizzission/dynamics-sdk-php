@@ -240,7 +240,8 @@ class ODataRequest implements IODataRequest
         // If no return type is specified, return DynamicsResponse
         $returnObj = $response;
 
-        $returnType = is_null($this->returnType) ? Entity::class : $this->returnType;
+//        $returnType = is_null($this->returnType) ? Entity::class : $this->returnType;
+        $returnType = is_null($this->returnType) ? new Entity() : $this->returnType;
 
         if ($returnType) {
             $returnObj = $response->getResponseAsObject($returnType);

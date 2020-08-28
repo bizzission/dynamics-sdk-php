@@ -44,6 +44,8 @@ class Entity implements ArrayAccess
      */
     // protected $entity;
 
+    protected static $__CLASS__ = __CLASS__;
+
     /**
      * The primary key for the entity.
      *
@@ -193,7 +195,7 @@ class Entity implements ArrayAccess
      * @return Entity
      * @throws MassAssignmentException
      */
-    function __construct($properties = array())
+    public function __construct($properties = array())
     {
         $this->bootIfNotBooted();
 
@@ -201,9 +203,9 @@ class Entity implements ArrayAccess
 
         $this->fill($properties);
 
-        return $this;
     }
 
+    // TODO: Should ask Paul's Help here.
     /**
      * Check if the entity needs to be booted and if so, do it.
      *
@@ -211,8 +213,8 @@ class Entity implements ArrayAccess
      */
     protected function bootIfNotBooted()
     {
-        if (!isset(static::$booted[static::class])) {
-            static::$booted[static::class] = true;
+        if (!isset(static::$booted[static::$__CLASS__])) {
+            static::$booted[static::$__CLASS__] = true;
 
             // $this->fireModelEvent('booting', false);
 
@@ -239,7 +241,7 @@ class Entity implements ArrayAccess
      */
     protected static function bootTraits()
     {
-        $class = static::class;
+        $class = static::$__CLASS__;
 
         foreach (class_uses_recursive($class) as $trait) {
             if (method_exists($class, $method = 'boot' . class_basename($trait))) {
@@ -1362,7 +1364,7 @@ class Entity implements ArrayAccess
             return $this->getPropertyValue($key);
         }
 
-        if (method_exists(self::class, $key)) {
+        if (method_exists(self::$__CLASS__, $key)) {
             return;
         }
 

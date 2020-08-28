@@ -51,8 +51,14 @@ class HttpRequestMessage
      * @param HttpMethod|string $method
      * @param null $requestUri
      */
-    public function __construct(HttpMethod $method = HttpMethod::GET, $requestUri = null)
+//    public function __construct(HttpMethod $method = HttpMethod::GET, $requestUri = null)
+    public function __construct(HttpMethod $method, $requestUri = null)
     {
+        // TODO: To be seen. if it provides an error or if it's correct.
+        if(!$method) {
+            $method = HttpMethod::GET;
+        }
+
         $this->method = $method;
         $this->requestUri = $requestUri;
         $this->headers = array();

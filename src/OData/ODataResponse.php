@@ -54,6 +54,10 @@ class ODataResponse
     * @var string
     */
     private $httpStatusCode;
+    /**
+     * @var object
+     */
+    private $request;
 
     /**
     * Creates a new OData HTTP response entity
@@ -145,9 +149,9 @@ class ODataResponse
                 $objArray[] = new $class($obj);
             }
             return $objArray;
-        } else {
-            return array(new $class($result));
         }
+
+        return array(new $class($result));
     }
 
     /**
