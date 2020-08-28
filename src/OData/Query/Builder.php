@@ -3,8 +3,8 @@
 namespace SaintSystems\OData\Query;
 
 use Closure;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
+use Bizzission\Support\Arr;
+use Bizzission\Support\Collection;
 use SaintSystems\OData\Constants;
 use SaintSystems\OData\Exception\ODataQueryException;
 use SaintSystems\OData\IODataClient;
@@ -337,7 +337,9 @@ class Builder
         // passed to the method, we will assume that the operator is an equals sign
         // and keep going. Otherwise, we'll require the operator to be passed in.
         list($value, $operator) = $this->prepareValueAndOperator(
-            $value, $operator, func_num_args() == 2
+            $value,
+            $operator,
+            func_num_args() == 2
         );
 
         // If the columns is actually a Closure instance, we will assume the developer
@@ -381,10 +383,14 @@ class Builder
         $type = 'Basic';
 
         $this->wheres[] = compact(
-            'type', 'column', 'operator', 'value', 'boolean'
+            'type',
+            'column',
+            'operator',
+            'value',
+            'boolean'
         );
 
-        if (! $value instanceof Expression) {
+        if (!$value instanceof Expression) {
             $this->addBinding($value, 'where');
         }
 
@@ -422,7 +428,11 @@ class Builder
         $type = 'Column';
 
         $this->wheres[] = compact(
-            'type', 'first', 'operator', 'second', 'boolean'
+            'type',
+            'first',
+            'operator',
+            'second',
+            'boolean'
         );
 
         return $this;
@@ -485,7 +495,7 @@ class Builder
     protected function invalidOperatorAndValue($operator, $value)
     {
         return is_null($value) && in_array($operator, $this->operators) &&
-             ! in_array($operator, ['=', '<>', '!=']);
+            !in_array($operator, ['=', '<>', '!=']);
     }
 
     /**
@@ -496,8 +506,8 @@ class Builder
      */
     protected function invalidOperator($operator)
     {
-        return ! in_array(strtolower($operator), $this->operators, true) &&
-               ! in_array(strtolower($operator), $this->grammar->getOperators(), true);
+        return !in_array(strtolower($operator), $this->operators, true) &&
+            !in_array(strtolower($operator), $this->grammar->getOperators(), true);
     }
 
     /**
@@ -580,7 +590,11 @@ class Builder
         call_user_func($callback, $query = $this->newQuery());
 
         $this->wheres[] = compact(
-            'type', 'column', 'operator', 'query', 'boolean'
+            'type',
+            'column',
+            'operator',
+            'query',
+            'boolean'
         );
 
         $this->addBinding($query->getBindings(), 'where');
@@ -714,7 +728,8 @@ class Builder
     protected function runGet()
     {
         return $this->client->get(
-            $this->grammar->compileSelect($this), $this->getBindings()
+            $this->grammar->compileSelect($this),
+            $this->getBindings()
         );
     }
 
@@ -729,7 +744,7 @@ class Builder
         $results = $this->get();
 
         //return (int) $results;
-        if (! $results->isEmpty()) {
+        if (!$results->isEmpty()) {
             return (int) $results[0];
         }
     }
@@ -750,7 +765,7 @@ class Builder
             return true;
         }
 
-        if (! is_array(reset($values))) {
+        if (!is_array(reset($values))) {
             $values = [$values];
         }
 
@@ -818,7 +833,7 @@ class Builder
     protected function cleanBindings(array $bindings)
     {
         return array_values(array_filter($bindings, function ($binding) {
-            return true;//! $binding instanceof Expression;
+            return true; //! $binding instanceof Expression;
         }));
     }
 
@@ -834,7 +849,7 @@ class Builder
      */
     public function addBinding($value, $type = 'where')
     {
-        if (! array_key_exists($type, $this->bindings)) {
+        if (!array_key_exists($type, $this->bindings)) {
             throw new \InvalidArgumentException("Invalid binding type: {$type}.");
         }
 
