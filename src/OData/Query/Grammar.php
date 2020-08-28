@@ -265,8 +265,9 @@ class Grammar implements IGrammar
      */
     protected function compileWheresToArray($query)
     {
-        return collect($query->wheres)->map(function ($where) use ($query) {
-            return $where['boolean'].' '.$this->{"where{$where['type']}"}($query, $where);
+        $that = $this;
+        return collect($query->wheres)->map(function ($where) use ($query, $that) {
+            return $where['boolean'].' '.$that->{"where{$where['type']}"}($query, $where);
         })->all();
     }
 

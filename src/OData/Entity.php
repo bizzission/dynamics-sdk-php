@@ -298,8 +298,9 @@ class Entity implements ArrayAccess
      */
     public function forceFill(array $properties)
     {
-        return static::unguarded(function () use ($properties) {
-            return $this->fill($properties);
+        $that = $this;
+        return static::unguarded(function () use ($properties, $that) {
+            return $that->fill($properties);
         });
     }
 
