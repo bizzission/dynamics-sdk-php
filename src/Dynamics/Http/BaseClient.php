@@ -46,8 +46,12 @@ class BaseClient implements IBaseClient
     {
         $this->setBaseUrl($baseUrl);
         $this->authenticationProvider = $authenticationProvider;
-        // TODO: This one needs a fix class doesn't exists
-        $this->httpProvider = $httpProvider ?? new HttpProvider();//new HttpProvider(new Serializer());
+//        $this->httpProvider = $httpProvider ?? new HttpProvider();//new HttpProvider(new Serializer());
+        if(!isset($httpProvider)) {
+            $this->httpProvider = new HttpProvider();
+        } else {
+            $this->httpProvider = $httpProvider;
+        }
     }
 
     /**
