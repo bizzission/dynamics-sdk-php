@@ -3,7 +3,7 @@
 namespace Microsoft\Dynamics\Http;
 
 use ArrayAccess;
-use Microsoft\Dynamics\Model\Entity;
+//use Microsoft\Dynamics\Model\Entity;
 
 /**
  * The type EntityRequestBuilder.

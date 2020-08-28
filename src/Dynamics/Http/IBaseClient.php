@@ -2,7 +2,10 @@
 
 namespace Microsoft\Dynamics\Http;
 
-use Microsoft\Core\Http\IAuthenticationProvider;
+//use Microsoft\Core\Http\IAuthenticationProvider;
+//use Microsoft\Core\Http\IHttpProvider;
+use SaintSystems\OData\IAuthenticationProvider;
+use SaintSystems\OData\IHttpProvider;
 
 /**
  * Interface for the base client.
@@ -23,7 +26,7 @@ interface IBaseClient
 
     /**
      * Gets the IHttpProvider for sending HTTP requests.
-     * @var \Microsoft\Core\Http\IHttpProvider
+     * @var IHttpProvider
      */
     public function getHttpProvider();
 }

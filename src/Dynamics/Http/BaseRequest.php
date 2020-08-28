@@ -2,10 +2,13 @@
 
 namespace Microsoft\Dynamics\Http;
 
-use Microsoft\Core\Http\Uri;
-use Microsoft\Core\Http\HttpMethod;
-use Microsoft\Core\Http\HttpRequestMessage;
+//use Microsoft\Core\Http\Uri;
+//use Microsoft\Core\Http\HttpMethod;
+//use Microsoft\Core\Http\HttpRequestMessage;
+use Microsoft\Dynamics\Exception\DynamicsException;
+use SaintSystems\OData\HttpMethod;
 use SaintSystems\OData\HttpRequestMessage;
+use SaintSystems\OData\Uri;
 
 /**
  * The base request class.
@@ -203,7 +206,7 @@ class BaseRequest implements IBaseRequest
      * Adds all of the headers from the header collection to the request.
      *
      * <param name="request">The <see cref="HttpRequestMessage"/> representation of the request.</param>
-     * @param \Microsoft\Dynamics\Http\HttpRequestMessage $request
+     * @param HttpRequestMessage $request
      */
     private function addHeadersToRequest(HttpRequestMessage $request)
     {
@@ -231,7 +234,7 @@ class BaseRequest implements IBaseRequest
      *
      * <param name="request">The <see cref="HttpRequestMessage"/> representation of the request.</param>
      * <returns>The task to await.</returns>
-     * @param \Microsoft\Dynamics\Http\HttpRequestMessage $request
+     * @param HttpRequestMessage $request
      * @return
      */
     private function authenticateRequest(HttpRequestMessage $request)

@@ -18,13 +18,10 @@
 namespace Microsoft\Dynamics;
 
 use Closure;
-use Microsoft\Dynamics\Constants;
-use Microsoft\Dynamics\Http\BaseClient;
-use Microsoft\Dynamics\Http\IDynamicsClient;
-use Microsoft\Dynamics\Http\DynamicsCollectionRequest;
-use Microsoft\Dynamics\Http\DynamicsRequest;
-use Microsoft\Dynamics\Http\EntityRequestBuilder;
 use Microsoft\Dynamics\Exception\DynamicsException;
+use Microsoft\Dynamics\Http\BaseClient;
+use Microsoft\Dynamics\Http\EntityRequestBuilder;
+use SaintSystems\OData\IHttpProvider;
 
 /**
  * Class Dynamics
@@ -41,7 +38,7 @@ class DynamicsClient extends BaseClient// implements IDynamicsClient
      * @param string $baseUrl The base service URL. For example, "https://contoso.crm.dynamics.com/api/data/v8.0."
      * @param Closure|null $authenticationProvider The IAuthenticationProvider for authenticating request messages.
      * @param IHttpProvider|null $httpProvider The IHttpProvider for sending requests.
-     * @throws DynamicsException
+     * @throws DynamicsException|Exception\DynamicsException
      */
     public function __construct($baseUrl, 
                                 Closure $authenticationProvider = null, 
@@ -79,6 +76,7 @@ class DynamicsClient extends BaseClient// implements IDynamicsClient
         {
             $entityName = 'Microsoft\\Dynamics\\Model\\'.$key;
             $entitySetName = $entityName::$entity;
+
             return new EntityRequestBuilder($this->getBaseUrl().'/'.$entitySetName, $this, $entityName);
         }
     }

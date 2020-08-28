@@ -3,9 +3,9 @@
 namespace Microsoft\Dynamics\Http;
 
 use Closure;
-use Microsoft\Core\Http\HttpProvider;
-use Microsoft\Core\Http\IAuthenticationProvider;
-use Microsoft\Core\Http\IHttpProvider;
+//use Microsoft\Core\Http\HttpProvider;
+//use Microsoft\Core\Http\IAuthenticationProvider;
+//use Microsoft\Core\Http\IHttpProvider;
 use Microsoft\Dynamics\Exception\DynamicsException;
 use SaintSystems\OData\IAuthenticationProvider;
 use SaintSystems\OData\IHttpProvider;
@@ -37,7 +37,7 @@ class BaseClient implements IBaseClient
      * Constructs a new BaseClient.
      * @param string $baseUrl The base service URL. For example, "https://contoso.crm.dynamics.com/api/data/v8.0."
      * @param Closure $authenticationProvider The IAuthenticationProvider for authenticating request messages.
-     * @param \Microsoft\Dynamics\Http\IHttpProvider|null $httpProvider The IHttpProvider for sending requests.
+     * @param IHttpProvider|null $httpProvider The IHttpProvider for sending requests.
      * @throws DynamicsException
      */
     public function __construct($baseUrl, 
@@ -46,6 +46,7 @@ class BaseClient implements IBaseClient
     {
         $this->setBaseUrl($baseUrl);
         $this->authenticationProvider = $authenticationProvider;
+        // TODO: This one needs a fix class doesn't exists
         $this->httpProvider = $httpProvider ?? new HttpProvider();//new HttpProvider(new Serializer());
     }
 

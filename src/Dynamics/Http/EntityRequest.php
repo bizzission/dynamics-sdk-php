@@ -2,8 +2,9 @@
 
 namespace Microsoft\Dynamics\Http;
 
-use Microsoft\Dynamics\Model\Entity;
+//use Microsoft\Dynamics\Model\Entity;
 use Microsoft\Dynamics\Http\QueryOption;
+use SaintSystems\OData\Entity;
 
 /// <summary>
 /// The type EntityRequest.

@@ -17,7 +17,8 @@
 
 namespace Microsoft\Dynamics\Http;
 
-use GuzzleHttp\Client;
+//use GuzzleHttp\Client;
+use Guzzle\Http\Client;
 use Microsoft\Dynamics\Constants;
 use Microsoft\Dynamics\Exception\DynamicsException;
 
@@ -384,6 +385,7 @@ class DynamicsRequest
         }
         try {
             $file = fopen($path, 'r');
+            // TODO: Needs a fix here
             $stream = \GuzzleHttp\Psr7\stream_for($file);
             $this->requestBody = $stream;
             return $this->execute($client);
@@ -436,14 +438,14 @@ class DynamicsRequest
     }
 
     /**
-    * Create a new Guzzle client
-    * To allow for user flexibility, the 
-    * client is not reused. This allows the user
-    * to set and change headers on a per-request
-    * basis
-    *
-    * @return \GuzzleHttp\Client The new client
-    */
+     * Create a new Guzzle client
+     * To allow for user flexibility, the
+     * client is not reused. This allows the user
+     * to set and change headers on a per-request
+     * basis
+     *
+     * @return Client The new client
+     */
     protected function createGuzzleClient()
     {
         return new Client(
