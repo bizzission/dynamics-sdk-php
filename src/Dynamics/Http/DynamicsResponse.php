@@ -55,10 +55,6 @@ class DynamicsResponse
     * @var string
     */
     private $httpStatusCode;
-    /**
-     * @var object
-     */
-    private $request;
 
     /**
     * Creates a new Dynamics HTTP response entity

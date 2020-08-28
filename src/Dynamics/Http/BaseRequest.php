@@ -53,7 +53,7 @@ class BaseRequest implements IBaseRequest
             $headerOptions = array_filter($options, function($item) {
                 return is_a($item, class_basename(HeaderOption::$__CLASS__));
             });
-            if ($headerOptions !== null)
+            if ($headerOptions != null)
             {
                 $this->headers[] = $headerOptions;
             }
@@ -61,7 +61,7 @@ class BaseRequest implements IBaseRequest
             $queryOptions = array_filter($options, function($item) {
                 return is_a($item, class_basename(QueryOption::$__CLASS__));
             });
-            if ($queryOptions !== null)
+            if ($queryOptions != null)
             {
                 $this->queryOptions[] = $queryOptions;
             }
@@ -124,7 +124,7 @@ class BaseRequest implements IBaseRequest
             throw new DynamicsException('RequestUrlMissing.');
         }
 
-        if ($this->client->getAuthenticationProvider() === null)
+        if ($this->client->getAuthenticationProvider() == null)
         {
             throw new DynamicsException('AuthenticationProviderMissing');
         }
@@ -195,7 +195,7 @@ class BaseRequest implements IBaseRequest
     private function buildQueryString()
     {
         $queryOptions = $this->getQueryOptions();
-        if ($queryOptions !== null)
+        if ($queryOptions != null)
         {
             return '?' . http_build_query($queryOptions, null, '&');
         }

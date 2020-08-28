@@ -34,7 +34,7 @@ class EntityRequestBuilder extends BaseRequestBuilder implements IEntityRequestB
      */
     public function offsetExists($offset)
     {
-        return $this->entityId === $offset;
+        return $this->entityId == $offset;
     }
 
     /**
@@ -58,7 +58,7 @@ class EntityRequestBuilder extends BaseRequestBuilder implements IEntityRequestB
      */
     public function offsetSet($offset, $value)
     {
-        if ($offset === 'id') {
+        if ($offset == 'id') {
             $this->entityId = $value;
         }
     }
