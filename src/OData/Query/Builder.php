@@ -455,7 +455,7 @@ class Builder
         return $this->whereNested(function ($query) use ($column, $method) {
             foreach ($column as $key => $value) {
                 if (is_numeric($key) && is_array($value)) {
-                    $query->{$method}(...array_values($value));
+                    $query->{$method}(call_user_func_array('list', array_values($value)));
                 } else {
                     $query->$method($key, '=', $value);
                 }
