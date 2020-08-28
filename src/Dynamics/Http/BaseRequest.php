@@ -29,8 +29,8 @@ class BaseRequest implements IBaseRequest
     {
         $this->method = 'GET';
         $this->client = $client;
-        $this->headers = [];
-        $this->queryOptions = [];
+        $this->headers = array();
+        $this->queryOptions = array();
 
         $this->requestUrl = $this->initializeUrl($requestUrl);
 
@@ -251,7 +251,7 @@ class BaseRequest implements IBaseRequest
         {
             $queryString = $uri->query;
 
-            $queryOptions = [];
+            $queryOptions = array();
 
             $queryStringParts = explode('&', $queryString);
 
@@ -273,7 +273,7 @@ class BaseRequest implements IBaseRequest
         }
 
         //return new UriBuilder($uri) { Query = '' }.ToString();
-        return http_build_url($uri, ['query' => '']);
+        return http_build_url($uri, array('query' => ''));
     }
 
     /**

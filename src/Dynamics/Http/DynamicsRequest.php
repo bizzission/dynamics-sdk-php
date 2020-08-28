@@ -252,12 +252,12 @@ class DynamicsRequest
 
         $result = $client->request(
             $this->requestType, 
-            $this->getRequestUrl(), 
-            [
+            $this->getRequestUrl(),
+            array(
                 'body' => $this->requestBody,
                 'stream' =>  $this->returnsStream,
                 'timeout' => $this->timeout
-            ]
+            )
         );
 
         //Send back the bare response
@@ -303,11 +303,11 @@ class DynamicsRequest
         $promise = $client->requestAsync(
             $this->requestType,
             $this->getRequestUrl(),
-            [
+            array(
                 'body' => $this->requestBody,
                 'stream' => $this->returnsStream,
                 'timeout' => $this->timeout
-            ]
+            )
         )->then(
             // On success, return the result/response
             function ($result) {
@@ -354,11 +354,11 @@ class DynamicsRequest
 
             $client->request(
                 $this->requestType, 
-                $this->getRequestUrl(), 
-                [
+                $this->getRequestUrl(),
+                array(
                     'body' => $this->requestBody,
                     'sink' => $file
-                ]
+                )
             );
             fclose($file);
         } catch(DynamicsException $e) {
@@ -399,7 +399,7 @@ class DynamicsRequest
     */
     private function _getDefaultHeaders()
     {
-        $headers = [
+        return array(
             'Host' => $this->instanceApiUrl,
             'Content-Type' => 'application/json',
             Constants::MAX_ODATA_VERSION_HEADER => Constants::MAX_ODATA_VERSION,
@@ -407,8 +407,7 @@ class DynamicsRequest
             Constants::PREFER_HEADER => Constants::ODATA_MAX_PAGE_SIZE_DEFAULT,
             'SdkVersion' => 'Dynamics-php-' . Constants::SDK_VERSION,
             'Authorization' => 'Bearer ' . $this->accessToken
-        ];
-        return $headers;
+        );
     }
 
     /**
@@ -447,13 +446,12 @@ class DynamicsRequest
     */
     protected function createGuzzleClient()
     {
-        $client = new Client(
-            [
+        return new Client(
+            array(
                 'base_uri' => $this->instanceApiUrl,
                 'headers' => $this->headers
-            ]
+            )
         );
-        return $client;
     }
 
     /**

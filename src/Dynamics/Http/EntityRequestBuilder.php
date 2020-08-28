@@ -76,7 +76,7 @@ class EntityRequestBuilder extends BaseRequestBuilder implements IEntityRequestB
      */
     public function request() //:IEntityRequest
     {
-        return $this->requestWithOptions([]);
+        return $this->requestWithOptions(array());
     }
 
     /**
