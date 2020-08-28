@@ -51,7 +51,7 @@ class BaseRequest implements IBaseRequest
         if ($options !== null)
         {
             $headerOptions = array_filter($options, function($item) {
-                return is_a($item, class_basename(HeaderOption::class));
+                return is_a($item, class_basename(HeaderOption::$__CLASS__));
             });
             if ($headerOptions !== null)
             {
@@ -59,7 +59,7 @@ class BaseRequest implements IBaseRequest
             }
 
             $queryOptions = array_filter($options, function($item) {
-                return is_a($item, class_basename(QueryOption::class));
+                return is_a($item, class_basename(QueryOption::$__CLASS__));
             });
             if ($queryOptions !== null)
             {
