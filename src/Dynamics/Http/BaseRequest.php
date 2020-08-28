@@ -48,7 +48,7 @@ class BaseRequest implements IBaseRequest
         //$this->sdkVersionHeaderName = CoreConstants.Headers.SdkVersionHeaderName;
         //$this->SdkVersionHeaderPrefix = "Graph";
 
-        if ($options != null)
+        if ($options !== null)
         {
             $headerOptions = array_filter($options, function($item) {
                 return is_a($item, class_basename(HeaderOption::class));
@@ -116,6 +116,9 @@ class BaseRequest implements IBaseRequest
      * <param name="cancellationToken">The <see cref="CancellationToken"/> for the request.</param>
      * <param name="completionOption">The <see cref="HttpCompletionOption"/> to pass to the <see cref="IHttpProvider"/> on send.</param>
      * <returns>The <see cref="HttpResponseMessage"/> object.</returns>
+     * @param $serializableObject
+     * @return
+     * @throws DynamicsException
      */
     public function send($serializableObject)
     {
