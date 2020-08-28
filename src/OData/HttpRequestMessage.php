@@ -50,7 +50,7 @@ class HttpRequestMessage
     {
         $this->method = $method;
         $this->requestUri = $requestUri;
-        $this->headers = [];
+        $this->headers = array();
         $this->returnsStream = false;
     }
 }

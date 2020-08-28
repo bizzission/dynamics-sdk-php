@@ -61,11 +61,11 @@ class GuzzleHttpProvider implements IHttpProvider
     */
     public function send(HttpRequestMessage $request)
     {    
-        $options = [
+        $options = array(
             'headers' => $request->headers,
             'stream' =>  $request->returnsStream,
             'timeout' => $this->timeout,
-        ];
+        );
 
         if ($request->method == HttpMethod::POST || $request->method == HttpMethod::PUT) {
             $options['body'] = $request->body;

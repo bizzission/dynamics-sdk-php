@@ -265,11 +265,11 @@ class ODataRequest implements IODataRequest
         $promise = $client->requestAsync(
             $this->requestType,
             $this->getRequestUrl(),
-            [
+            array(
                 'body' => $this->requestBody,
                 'stream' => $this->returnsStream,
                 'timeout' => $this->timeout
-            ]
+            )
         )->then(
             // On success, return the result/response
             function ($result) {
@@ -303,7 +303,7 @@ class ODataRequest implements IODataRequest
      */
     private function getDefaultHeaders()
     {
-        $headers = [
+        $headers = array(
             //RequestHeader::HOST => $this->client->getBaseUrl(),
             RequestHeader::CONTENT_TYPE => 'application/json',
             RequestHeader::ODATA_MAX_VERSION => Constants::MAX_ODATA_VERSION,
@@ -311,7 +311,7 @@ class ODataRequest implements IODataRequest
             RequestHeader::PREFER => Constants::ODATA_MAX_PAGE_SIZE_DEFAULT,
             RequestHeader::USER_AGENT => 'odata-sdk-php-' . Constants::SDK_VERSION,
             //RequestHeader::AUTHORIZATION => 'Bearer ' . $this->accessToken
-        ];
+        );
         return $headers;
     }
 

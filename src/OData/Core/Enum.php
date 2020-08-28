@@ -26,7 +26,7 @@ use SaintSystems\OData\Exception\ApplicationException;
  */
 abstract class Enum
 {
-    private static $constants = [];
+    private static $constants = array();
     /**
     * The value of the enum
     *

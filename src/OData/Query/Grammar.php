@@ -9,12 +9,12 @@ class Grammar implements IGrammar
      *
      * @var array
      */
-    protected $operators = [
+    protected $operators = array(
         '=', '<', '>', '<=', '>=', '!<', '!>', '<>', '!=',
         'contains', 'startswith', 'endswith',
-    ];
+    );
 
-    protected $operatorMapping = [
+    protected $operatorMapping = array(
         '='  => 'eq',
         '<'  => 'lt',
         '>'  => 'gt',
@@ -24,14 +24,14 @@ class Grammar implements IGrammar
         '!>' => 'not gt',
         '<>' => 'ne',
         '!=' => 'ne',
-    ];
+    );
 
     /**
      * The components that make up an OData Request.
      *
      * @var array
      */
-    protected $selectComponents = [
+    protected $selectComponents = array(
         'entitySet',
         'entityKey',
         'count',
@@ -44,7 +44,7 @@ class Grammar implements IGrammar
         'skip',
         'take',
         'totalCount',
-    ];
+    );
 
     /**
      * @inheritdoc
@@ -57,7 +57,7 @@ class Grammar implements IGrammar
         $original = $query->properties;
 
         if (is_null($query->properties)) {
-            $query->properties = [];
+            $query->properties = array();
         }
 
         // To compile the query, we'll spin through each component of the query and
@@ -85,7 +85,7 @@ class Grammar implements IGrammar
      */
     protected function compileComponents(Builder $query)
     {
-        $uri = [];
+        $uri = array();
 
         foreach ($this->selectComponents as $component) {
             // To compile the query, we'll spin through each component of the query and

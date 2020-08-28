@@ -180,7 +180,7 @@ class ODataClient implements IODataClient
      *
      * @return Builder
      */
-    public function select($properties = [])
+    public function select($properties = array())
     {
         $properties = is_array($properties) ? $properties : func_get_args();
 
@@ -207,7 +207,7 @@ class ODataClient implements IODataClient
      *
      * @return IODataRequest
      */
-    public function get($requestUri, $bindings = [])
+    public function get($requestUri, $bindings = array())
     {
         return $this->request(HttpMethod::GET, $requestUri);
     }

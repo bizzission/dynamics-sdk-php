@@ -41,7 +41,7 @@ interface IODataClient
      *
      * @return \SaintSystems\OData\Query\Builder
      */
-    public function select($properties = []);
+    public function select($properties = array());
 
     /**
      * Get a new query builder instance.
@@ -56,7 +56,7 @@ interface IODataClient
      *
      * @return IODataRequest
      */
-    public function get($requestUri, $bindings = []);
+    public function get($requestUri, $bindings = array());
 
     /**
      * Get the query grammar used by the connection.

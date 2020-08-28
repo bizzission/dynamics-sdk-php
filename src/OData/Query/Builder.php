@@ -36,12 +36,12 @@ class Builder
      *
      * @var array
      */
-    public $bindings = [
-        'select' => [],
-        'where'  => [],
-        'order'  => [],
-        'expand' => []
-    ];
+    public $bindings = array(
+        'select' => array(),
+        'where'  => array(),
+        'order'  => array(),
+        'expand' => array()
+    );
 
     /**
      * The entity set which the query is targeting.
@@ -127,21 +127,21 @@ class Builder
      *
      * @var array
      */
-    public $operators = [
+    public $operators = array(
         '=', '<', '>', '<=', '>=', '<>', '!=',
         'like', 'like binary', 'not like', 'between', 'ilike',
         '&', '|', '^', '<<', '>>',
         'rlike', 'regexp', 'not regexp',
         '~', '~*', '!~', '!~*', 'similar to',
         'not similar to', 'not ilike', '~~*', '!~~*',
-    ];
+    );
 
     /**
      * @var array
      */
-    public $select = [];
+    public $select = array();
 
-    public $expand = [];
+    public $expand = array();
 
     /**
      * @var IProcessor
@@ -182,7 +182,7 @@ class Builder
      *
      * @return $this
      */
-    public function select($properties = [])
+    public function select($properties = array())
     {
         $this->properties = is_array($properties) ? $properties : func_get_args();
 
@@ -353,7 +353,7 @@ class Builder
         // assume that the developer is just short-cutting the '=' operators and
         // we will set the operators to '=' and set the values appropriately.
         if ($this->invalidOperator($operator)) {
-            list($value, $operator) = [$operator, '='];
+            list($value, $operator) = array($operator, '=');
         }
 
         // If the value is a Closure, it means the developer is performing an entire
@@ -419,7 +419,7 @@ class Builder
         // assume that the developer is just short-cutting the '=' operators and
         // we will set the operators to '=' and set the values appropriately.
         if ($this->invalidOperator($operator)) {
-            list($second, $operator) = [$operator, '='];
+            list($second, $operator) = array($operator, '=');
         }
 
         // Finally, we will add this where clause into this array of clauses that we
@@ -474,12 +474,12 @@ class Builder
     protected function prepareValueAndOperator($value, $operator, $useDefault = false)
     {
         if ($useDefault) {
-            return [$operator, '='];
+            return array($operator, '=');
         } elseif ($this->invalidOperatorAndValue($operator, $value)) {
             throw new \InvalidArgumentException('Illegal operator and value combination.');
         }
 
-        return [$value, $operator];
+        return array($value, $operator);
     }
 
     /**
@@ -495,7 +495,7 @@ class Builder
     protected function invalidOperatorAndValue($operator, $value)
     {
         return is_null($value) && in_array($operator, $this->operators) &&
-            !in_array($operator, ['=', '<>', '!=']);
+            !in_array($operator, array('=', '<>', '!='));
     }
 
     /**
@@ -622,7 +622,7 @@ class Builder
      *
      * @throws ODataQueryException
      */
-    public function find($id, $properties = [])
+    public function find($id, $properties = array())
     {
         if (!isset($this->entitySet)) {
             throw new ODataQueryException(Constants::ENTITY_SET_REQUIRED);
@@ -639,7 +639,7 @@ class Builder
      */
     public function value($property)
     {
-        $result = (array) $this->first([$property]);
+        $result = (array) $this->first(array($property));
 
         return count($result) > 0 ? reset($result) : null;
     }
@@ -651,7 +651,7 @@ class Builder
      *
      * @return \stdClass|array|null
      */
-    public function first($properties = [])
+    public function first($properties = array())
     {
         return $this->take(1)->get($properties)->first();
         //return $this->take(1)->get($properties);
@@ -691,11 +691,11 @@ class Builder
      *
      * @return Collection
      */
-    public function get($properties = [], $options = null)
+    public function get($properties = array(), $options = null)
     {
         if (is_numeric($properties)) {
             $options = $properties;
-            $properties = [];
+            $properties = array();
         }
 
         if (isset($options)) {
@@ -766,7 +766,7 @@ class Builder
         }
 
         if (!is_array(reset($values))) {
-            $values = [$values];
+            $values = array($values);
         }
 
         // Here, we will sort the insert keys for every record so that each insert is

@@ -75,63 +75,63 @@ class Entity implements ArrayAccess
      *
      * @var array(string => string)
      */
-    protected $properties = [];
+    protected $properties = array();
 
     /**
      * The model property's original state.
      *
      * @var array
      */
-    protected $original = [];
+    protected $original = array();
 
     /**
      * The loaded relationships for the model.
      *
      * @var array
      */
-    protected $relations = [];
+    protected $relations = array();
 
     /**
      * The properties that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [];
+    protected $hidden = array();
 
     /**
      * The properties that should be visible in arrays.
      *
      * @var array
      */
-    protected $visible = [];
+    protected $visible = array();
 
     /**
      * The accessors to append to the model's array form.
      *
      * @var array
      */
-    protected $appends = [];
+    protected $appends = array();
 
     /**
      * The properties that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = array();
 
     /**
      * The properties that aren't mass assignable.
      *
      * @var array
      */
-    protected $guarded = []; //['*'];
+    protected $guarded = array(); //['*'];
 
     /**
      * The properties that should be mutated to dates.
      *
      * @var array
      */
-    protected $dates = [];
+    protected $dates = array();
 
     /**
      * The storage format of the model's date columns.
@@ -145,21 +145,21 @@ class Entity implements ArrayAccess
      *
      * @var array
      */
-    protected $casts = [];
+    protected $casts = array();
 
     /**
      * The relations to eager load on every call.
      *
      * @var array
      */
-    protected $with = [];
+    protected $with = array();
 
     /**
      * The array of booted entities.
      *
      * @var array
      */
-    protected static $booted = [];
+    protected static $booted = array();
 
     /**
      * Indicates if all mass assignment is enabled.
@@ -173,7 +173,7 @@ class Entity implements ArrayAccess
      *
      * @var array
      */
-    protected static $mutatorCache = [];
+    protected static $mutatorCache = array();
 
     /**
      * @var bool
@@ -242,7 +242,7 @@ class Entity implements ArrayAccess
 
         foreach (class_uses_recursive($class) as $trait) {
             if (method_exists($class, $method = 'boot' . class_basename($trait))) {
-                forward_static_call([$class, $method]);
+                forward_static_call(array($class, $method));
             }
         }
     }
@@ -254,8 +254,8 @@ class Entity implements ArrayAccess
      */
     public static function clearBootedModels()
     {
-        static::$booted = [];
-        static::$globalScopes = [];
+        static::$booted = array();
+        static::$globalScopes = array();
     }
 
     /**
@@ -321,7 +321,7 @@ class Entity implements ArrayAccess
      * @param  bool  $exists
      * @return static
      */
-    public function newInstance($properties = [], $exists = false)
+    public function newInstance($properties = array(), $exists = false)
     {
         // This method just provides a convenient way for us to generate fresh model
         // instances of this current model. It is particularly useful during the
@@ -668,7 +668,7 @@ class Entity implements ArrayAccess
      */
     public function isGuarded($key)
     {
-        return in_array($key, $this->getGuarded()) || $this->getGuarded() == ['*'];
+        return in_array($key, $this->getGuarded()) || $this->getGuarded() == array('*');
     }
 
     /**
@@ -678,7 +678,7 @@ class Entity implements ArrayAccess
      */
     public function totallyGuarded()
     {
-        return count($this->getFillable()) == 0 && $this->getGuarded() == ['*'];
+        return count($this->getFillable()) == 0 && $this->getGuarded() == array('*');
     }
 
     /**
@@ -876,7 +876,7 @@ class Entity implements ArrayAccess
      */
     protected function isDateCastable($key)
     {
-        return $this->hasCast($key, ['date', 'datetime']);
+        return $this->hasCast($key, array('date', 'datetime'));
     }
 
     /**
@@ -887,7 +887,7 @@ class Entity implements ArrayAccess
      */
     protected function isJsonCastable($key)
     {
-        return $this->hasCast($key, ['array', 'json', 'object', 'collection']);
+        return $this->hasCast($key, array('array', 'json', 'object', 'collection'));
     }
 
     /**
@@ -1259,7 +1259,7 @@ class Entity implements ArrayAccess
     protected function getArrayableAppends()
     {
         if (!count($this->appends)) {
-            return [];
+            return array();
         }
 
         return $this->getArrayableItems(
@@ -1274,7 +1274,7 @@ class Entity implements ArrayAccess
      */
     public function relationsToArray()
     {
-        $properties = [];
+        $properties = array();
 
         foreach ($this->getArrayableRelations() as $key => $value) {
             // If the values implements the Arrayable interface we can just call this
