@@ -301,6 +301,7 @@ class DynamicsRequest
             $client = $this->createGuzzleClient();
         }
 
+        $that = $this;
         $promise = $client->requestAsync(
             $this->requestType,
             $this->getRequestUrl(),
@@ -311,17 +312,17 @@ class DynamicsRequest
             )
         )->then(
             // On success, return the result/response
-            function ($result) {
+            function ($result) use ($that) {
                 $response = new DynamicsResponse(
-                    $this, 
+                    $that,
                     $result->getBody()->getContents(), 
                     $result->getStatusCode(), 
                     $result->getHeaders()
                 );
                 $returnObject = $response;
-                if ($this->returnType) {
+                if ($that->returnType) {
                     $returnObject = $response->getResponseAsObject(
-                        $this->returnType
+                        $that->returnType
                     );
                 }
                 return $returnObject;
