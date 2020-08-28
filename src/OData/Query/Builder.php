@@ -5,11 +5,13 @@ namespace SaintSystems\OData\Query;
 use Closure;
 use Bizzission\Support\Arr;
 use Bizzission\Support\Collection;
+use InvalidArgumentException;
 use SaintSystems\OData\Constants;
 use SaintSystems\OData\Exception\ODataQueryException;
 use SaintSystems\OData\IODataClient;
 use SaintSystems\OData\IODataRequest;
 use SaintSystems\OData\QueryOptions;
+use stdClass;
 
 class Builder
 {
@@ -281,8 +283,8 @@ class Builder
      * Apply the callback's query changes if the given "value" is true.
      *
      * @param bool     $value
-     * @param \Closure $callback
-     * @param \Closure $default
+     * @param Closure $callback
+     * @param Closure $default
      *
      * @return Builder
      */
@@ -318,7 +320,7 @@ class Builder
     /**
      * Add a basic where ($filter) clause to the query.
      *
-     * @param string|array|\Closure $column
+     * @param string|array|Closure $column
      * @param string                $operator
      * @param mixed                 $value
      * @param string                $boolean
@@ -470,14 +472,14 @@ class Builder
      *
      * @return array
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     protected function prepareValueAndOperator($value, $operator, $useDefault = false)
     {
         if ($useDefault) {
             return array($operator, '=');
         } elseif ($this->invalidOperatorAndValue($operator, $value)) {
-            throw new \InvalidArgumentException('Illegal operator and value combination.');
+            throw new InvalidArgumentException('Illegal operator and value combination.');
         }
 
         return array($value, $operator);
@@ -514,7 +516,7 @@ class Builder
     /**
      * Add an "or where" clause to the query.
      *
-     * @param  \Closure|string $column
+     * @param Closure|string $column
      * @param  string          $operator
      * @param  mixed           $value
      *
@@ -528,7 +530,7 @@ class Builder
     /**
      * Add a nested where statement to the query.
      *
-     * @param \Closure $callback
+     * @param Closure $callback
      * @param string   $boolean
      *
      * @return Builder|static
@@ -576,7 +578,7 @@ class Builder
      *
      * @param string   $column
      * @param string   $operator
-     * @param \Closure $callback
+     * @param Closure $callback
      * @param string   $boolean
      *
      * @return $this
@@ -619,7 +621,7 @@ class Builder
      * @param int   $id
      * @param array $properties
      *
-     * @return \stdClass|array|null
+     * @return stdClass|array|null
      *
      * @throws ODataQueryException
      */
@@ -650,7 +652,7 @@ class Builder
      *
      * @param array $properties
      *
-     * @return \stdClass|array|null
+     * @return stdClass|array|null
      */
     public function first($properties = array())
     {
@@ -846,12 +848,12 @@ class Builder
      *
      * @return $this
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function addBinding($value, $type = 'where')
     {
         if (!array_key_exists($type, $this->bindings)) {
-            throw new \InvalidArgumentException("Invalid binding type: {$type}.");
+            throw new InvalidArgumentException("Invalid binding type: {$type}.");
         }
 
         if (is_array($value)) {
@@ -876,7 +878,7 @@ class Builder
     /**
      * Get the database query processor instance.
      *
-     * @return \Illuminate\Database\Query\Processors\Processor
+     * @return IProcessor|null
      */
     public function getProcessor()
     {
@@ -886,7 +888,7 @@ class Builder
     /**
      * Get the query grammar instance.
      *
-     * @return \Illuminate\Database\Query\Grammars\Grammar
+     * @return IGrammar|null
      */
     public function getGrammar()
     {

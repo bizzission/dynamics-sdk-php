@@ -21,7 +21,7 @@ use ArrayAccess;
 use Carbon\Carbon;
 // use LogicException;
 // use JsonSerializable;
-use DateTimeInterface;
+use DateTime;
 use Bizzission\Support\Contracts\Arrayable;
 use Bizzission\Support\Arr;
 use Bizzission\Support\Str;
@@ -1046,7 +1046,7 @@ class Entity implements ArrayAccess
         // If the value is already a DateTime instance, we will just skip the rest of
         // these checks since they will be a waste of time, and hinder performance
         // when checking the field. We will just return the DateTime right away.
-        if ($value instanceof DateTimeInterface) {
+        if ($value instanceof DateTime) {
             return new Carbon(
                 $value->format('Y-m-d H:i:s.u'),
                 $value->getTimeZone()
@@ -1087,10 +1087,10 @@ class Entity implements ArrayAccess
     /**
      * Prepare a date for array / JSON serialization.
      *
-     * @param  \DateTimeInterface  $date
+     * @param DateTime $date
      * @return string
      */
-    protected function serializeDate(DateTimeInterface $date)
+    protected function serializeDate(DateTime $date)
     {
         return $date->format($this->getDateFormat());
     }
