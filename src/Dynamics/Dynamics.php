@@ -63,8 +63,12 @@ class Dynamics
     private $instanceApiUrl;
 
     /**
-    * Creates a new Dynamics object, which is used to call the Dynamics 365 API
-    */
+     * Creates a new Dynamics object, which is used to call the Dynamics 365 API
+     * @param null $instanceUrl
+     * @param null $accessToken
+     * @param null $apiVersion
+     * @throws DynamicsException
+     */
     public function __construct($instanceUrl = null, $accessToken = null, $apiVersion = null)
     {
         if ( ! empty($instanceUrl)) {
@@ -79,12 +83,13 @@ class Dynamics
     }
 
     /**
-    * Sets the Dynamics Instance URL to call
-    *
-    * @param string $instanceUrl The URL to call
-    *
-    * @return Dynamics object
-    */
+     * Sets the Dynamics Instance URL to call
+     *
+     * @param string $instanceUrl The URL to call
+     *
+     * @return Dynamics object
+     * @throws DynamicsException
+     */
     public function setInstanceUrl($instanceUrl)
     {
         $this->parseInstanceUrl($instanceUrl);
@@ -94,7 +99,8 @@ class Dynamics
     /**
      * Parse the instance url and reconstitute the instance API URL from it
      * @param  [type] $instanceUrl [description]
-     * @return [type]              [description]
+     * @return void [type]              [description]
+     * @throws DynamicsException
      */
     private function parseInstanceUrl($instanceUrl)
     {
@@ -139,14 +145,15 @@ class Dynamics
     }
 
     /**
-    * Creates a new request object with the given Dynamics information
-    *
-    * @param string $requestType The HTTP method to use, e.g. "GET" or "POST"
-    * @param string $endpoint    The Dynamics endpoint to call
-    *
-    * @return DynamicsRequest The request object, which can be used to 
-    *                      make queries against Dynamics
-    */
+     * Creates a new request object with the given Dynamics information
+     *
+     * @param string $requestType The HTTP method to use, e.g. "GET" or "POST"
+     * @param string $endpoint The Dynamics endpoint to call
+     *
+     * @return DynamicsRequest The request object, which can be used to
+     *                      make queries against Dynamics
+     * @throws DynamicsException
+     */
     public function createRequest($requestType, $endpoint)
     {
         return new DynamicsRequest(
@@ -159,15 +166,16 @@ class Dynamics
     }
 
     /**
-    * Creates a new collection request object with the given 
-    * Dynamics information
-    * 
-    * @param string $requestType The HTTP method to use, e.g. "GET" or "POST"
-    * @param string $endpoint    The Dynamics endpoint to call
-    * 
-    * @return DynamicsCollectionRequest The request object, which can be
-    *                                used to make queries against Dynamics
-    */
+     * Creates a new collection request object with the given
+     * Dynamics information
+     *
+     * @param string $requestType The HTTP method to use, e.g. "GET" or "POST"
+     * @param string $endpoint The Dynamics endpoint to call
+     *
+     * @return DynamicsCollectionRequest The request object, which can be
+     *                                used to make queries against Dynamics
+     * @throws DynamicsException
+     */
     public function createCollectionRequest($requestType, $endpoint)
     {
         return new DynamicsCollectionRequest(

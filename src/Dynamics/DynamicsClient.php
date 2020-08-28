@@ -38,9 +38,10 @@ class DynamicsClient extends BaseClient// implements IDynamicsClient
 {
     /**
      * Constructs a new BaseClient.
-     * @param string                  $baseUrl                The base service URL. For example, "https://contoso.crm.dynamics.com/api/data/v8.0."
-     * @param IAuthenticationProvider $authenticationProvider The IAuthenticationProvider for authenticating request messages.
-     * @param IHttpProvider|null      $httpProvider           The IHttpProvider for sending requests.
+     * @param string $baseUrl The base service URL. For example, "https://contoso.crm.dynamics.com/api/data/v8.0."
+     * @param Closure|null $authenticationProvider The IAuthenticationProvider for authenticating request messages.
+     * @param IHttpProvider|null $httpProvider The IHttpProvider for sending requests.
+     * @throws DynamicsException
      */
     public function __construct($baseUrl, 
                                 Closure $authenticationProvider = null, 
