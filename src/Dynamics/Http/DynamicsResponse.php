@@ -159,8 +159,10 @@ class DynamicsResponse
     public function getSkipToken()
     {
         if (array_key_exists("@odata.nextLink", $this->getBody())) {
-            $nextLink = $this->getBody()['@odata.nextLink'];
-            $url = explode("?", $nextLink)[1];
+            $tempArray = $this->getBody();
+            $nextLink = $tempArray['@odata.nextLink'];
+            $nextLinkTemp = $nextLink[1];
+            $url = explode("?", $nextLinkTemp);
             $url = explode("skiptoken=", $url);
             if (count($url) > 1) {
                 return $url[1];
