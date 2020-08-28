@@ -12,16 +12,17 @@ use Microsoft\Dynamics\Exception\DynamicsException;
  */
 class EntityRequestBuilder extends BaseRequestBuilder implements IEntityRequestBuilder, ArrayAccess
 {
-    /**
-     * Constructs a new EntityRequestBuilder.
-     * @param string $requestUrl The URL for the built request.
-     * @param IBaseClient $client The IBaseClient for handling requests.
-     * @param $returnType
-     */
-    public function __construct($requestUrl, IBaseClient $client, $returnType)
-    {
-        parent::__construct($requestUrl, $client, $returnType);
-    }
+    // HINT: It only calls the parent __construct() No need to call it.
+//    /**
+//     * Constructs a new EntityRequestBuilder.
+//     * @param string $requestUrl The URL for the built request.
+//     * @param IBaseClient $client The IBaseClient for handling requests.
+//     * @param $returnType
+//     */
+//    public function __construct($requestUrl, IBaseClient $client, $returnType)
+//    {
+//        parent::__construct($requestUrl, $client, $returnType);
+//    }
 
     private $entityId;
 
