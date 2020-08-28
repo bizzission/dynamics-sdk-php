@@ -4,8 +4,11 @@ namespace Microsoft\Dynamics\Http;
 
 use Closure;
 use Microsoft\Core\Http\HttpProvider;
+use Microsoft\Core\Http\IAuthenticationProvider;
 use Microsoft\Core\Http\IHttpProvider;
 use Microsoft\Dynamics\Exception\DynamicsException;
+use SaintSystems\OData\IAuthenticationProvider;
+use SaintSystems\OData\IHttpProvider;
 
 /**
  * A default IBaseClient implementation.
@@ -20,7 +23,7 @@ class BaseClient implements IBaseClient
 
     /**
      * The IAuthenticationProvider for authenticating request messages.
-     * @var \Microsoft\Core\Http\IAuthenticationProvider
+     * @var IAuthenticationProvider
      */
     private $authenticationProvider;
 
@@ -29,12 +32,13 @@ class BaseClient implements IBaseClient
      * @var IHttpProvider
      */
     private $httpProvider;
-    
+
     /**
      * Constructs a new BaseClient.
-     * @param string                  $baseUrl                The base service URL. For example, "https://contoso.crm.dynamics.com/api/data/v8.0."
-     * @param IAuthenticationProvider $authenticationProvider The IAuthenticationProvider for authenticating request messages.
-     * @param IHttpProvider|null      $httpProvider           The IHttpProvider for sending requests.
+     * @param string $baseUrl The base service URL. For example, "https://contoso.crm.dynamics.com/api/data/v8.0."
+     * @param Closure $authenticationProvider The IAuthenticationProvider for authenticating request messages.
+     * @param \Microsoft\Dynamics\Http\IHttpProvider|null $httpProvider The IHttpProvider for sending requests.
+     * @throws DynamicsException
      */
     public function __construct($baseUrl, 
                                 Closure $authenticationProvider, 
@@ -66,6 +70,7 @@ class BaseClient implements IBaseClient
     /**
      * Sets the base URL for requests of the client.
      * @param void
+     * @throws DynamicsException
      */
     public function setBaseUrl($value)
     {

@@ -2,6 +2,8 @@
 
 namespace Microsoft\Dynamics\Http;
 
+use Microsoft\Core\Http\IAuthenticationProvider;
+
 /**
  * Interface for the base client.
  */
@@ -9,7 +11,7 @@ interface IBaseClient
 {
     /**
      * Gets the IAuthenticationProvider for authenticating HTTP requests.
-     * @var \Microsoft\Core\Http\IAuthenticationProvider
+     * @var IAuthenticationProvider
      */
     public function getAuthenticationProvider();
 

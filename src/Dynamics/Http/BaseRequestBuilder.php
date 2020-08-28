@@ -9,8 +9,9 @@ class BaseRequestBuilder
 {
     /**
      * Constructs a new BaseRequestBuilder.
-     * @param string      $requestUrl The URL for the built request.
-     * @param IBaseClient $client     The IBaseClient for handling requests.
+     * @param string $requestUrl The URL for the built request.
+     * @param IBaseClient $client The IBaseClient for handling requests.
+     * @param $returnType
      */
     public function __construct($requestUrl, IBaseClient $client, $returnType)
     {

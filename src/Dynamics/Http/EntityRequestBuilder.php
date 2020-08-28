@@ -12,8 +12,9 @@ class EntityRequestBuilder extends BaseRequestBuilder implements IEntityRequestB
 {
     /**
      * Constructs a new EntityRequestBuilder.
-     * @param string      $requestUrl The URL for the built request.
-     * @param IBaseClient $client     The IBaseClient for handling requests.
+     * @param string $requestUrl The URL for the built request.
+     * @param IBaseClient $client The IBaseClient for handling requests.
+     * @param $returnType
      */
     public function __construct($requestUrl, IBaseClient $client, $returnType)
     {
@@ -72,7 +73,7 @@ class EntityRequestBuilder extends BaseRequestBuilder implements IEntityRequestB
 
     /**
      * Builds the request.
-     * @return IEntityRequest The built request.
+     * @return EntityRequest The built request.
      */
     public function request() //:IEntityRequest
     {
@@ -81,8 +82,8 @@ class EntityRequestBuilder extends BaseRequestBuilder implements IEntityRequestB
 
     /**
      * Builds the request.
-     * @param  array $options The query and header options for the request.
-     * @return IEntityRequest  The built request.
+     * @param array $options The query and header options for the request.
+     * @return EntityRequest The built request.
      */
     public function requestWithOptions($options)
     {

@@ -5,6 +5,7 @@ namespace Microsoft\Dynamics\Http;
 use Microsoft\Core\Http\Uri;
 use Microsoft\Core\Http\HttpMethod;
 use Microsoft\Core\Http\HttpRequestMessage;
+use SaintSystems\OData\HttpRequestMessage;
 
 /**
  * The base request class.
@@ -20,6 +21,10 @@ class BaseRequest implements IBaseRequest
      * <param name="requestUrl">The URL for the request.</param>
      * <param name="client">The <see cref="IBaseClient"/> for handling requests.</param>
      * <param name="options">The header and query options for the request.</param>
+     * @param string $requestUrl
+     * @param IBaseClient $client
+     * @param string|null $returnType
+     * @param array|null $options
      */
     public function __construct(
         string $requestUrl,
@@ -198,6 +203,7 @@ class BaseRequest implements IBaseRequest
      * Adds all of the headers from the header collection to the request.
      *
      * <param name="request">The <see cref="HttpRequestMessage"/> representation of the request.</param>
+     * @param \Microsoft\Dynamics\Http\HttpRequestMessage $request
      */
     private function addHeadersToRequest(HttpRequestMessage $request)
     {
@@ -225,6 +231,8 @@ class BaseRequest implements IBaseRequest
      *
      * <param name="request">The <see cref="HttpRequestMessage"/> representation of the request.</param>
      * <returns>The task to await.</returns>
+     * @param \Microsoft\Dynamics\Http\HttpRequestMessage $request
+     * @return
      */
     private function authenticateRequest(HttpRequestMessage $request)
     {
@@ -237,6 +245,8 @@ class BaseRequest implements IBaseRequest
      *
      * <param name="requestUrl">The request URL.</param>
      * <returns>The request URL minus query string.</returns>
+     * @param $requestUrl
+     * @return string
      */
     private function initializeUrl($requestUrl)
     {

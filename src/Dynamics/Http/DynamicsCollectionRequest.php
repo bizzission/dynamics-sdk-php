@@ -66,15 +66,16 @@ class DynamicsCollectionRequest extends DynamicsRequest
     protected $originalReturnType;
 
     /**
-    * Constructs a new DynamicsCollectionRequest object
-    *
-    * @param string $requestType The HTTP verb for the 
-    *                            request ("GET", "POST", "PUT", etc.)
-    * @param string $endpoint    The URI of the endpoint to hit
-    * @param string $accessToken A valid access token
-    * @param string $instanceUrl     The base URL of the request
-    * @param string $apiVersion  The version of the API to call
-    */
+     * Constructs a new DynamicsCollectionRequest object
+     *
+     * @param string $requestType The HTTP verb for the
+     *                            request ("GET", "POST", "PUT", etc.)
+     * @param string $endpoint The URI of the endpoint to hit
+     * @param string $accessToken A valid access token
+     * @param string $instanceUrl The base URL of the request
+     * @param string $apiVersion The version of the API to call
+     * @throws DynamicsException
+     */
     public function __construct($requestType, $endpoint, $accessToken, $instanceUrl, $apiVersion)
     {
         parent::__construct(
@@ -88,10 +89,11 @@ class DynamicsCollectionRequest extends DynamicsRequest
     }
 
     /**
-    * Gets the number of entries in the collection
-    *
-    * @return int the number of entries
-    */
+     * Gets the number of entries in the collection
+     *
+     * @return int the number of entries
+     * @throws DynamicsException
+     */
     public function count()
     {
         $query = '$count=true';
@@ -134,12 +136,13 @@ class DynamicsCollectionRequest extends DynamicsRequest
     }
 
     /**
-    * Gets the next page of results
-    *
-    * @param bool $prev When true, get the previous page
-    *
-    * @return array of objects of class $returnType
-    */
+     * Gets the next page of results
+     *
+     * @param bool $prev When true, get the previous page
+     *
+     * @return array of objects of class $returnType
+     * @throws DynamicsException
+     */
     public function getPage($prev = false)
     {
         $this->setPageCallInfo($prev);
@@ -217,10 +220,11 @@ class DynamicsCollectionRequest extends DynamicsRequest
     }
 
     /**
-    * Gets the previous page of results from the collection
-    *
-    * @return array of objects of class $returnType
-    */
+     * Gets the previous page of results from the collection
+     *
+     * @return array of objects of class $returnType
+     * @throws DynamicsException
+     */
     public function getPrevPage()
     {
         $this->end = false;

@@ -98,10 +98,10 @@ class DynamicsResponse
     }
 
     /**
-    * Get the undecoded body of the HTTP response
-    *
-    * @return array The undecoded body
-    */
+     * Get the undecoded body of the HTTP response
+     *
+     * @return string|null The undecoded body
+     */
     public function getRawBody()
     {
         return $this->body;
