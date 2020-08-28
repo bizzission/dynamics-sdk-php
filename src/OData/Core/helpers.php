@@ -91,7 +91,7 @@ if (!function_exists('http_build_url')) {
             }
         } else {
             if (isset($parts['path']) && ($flags & HTTP_URL_JOIN_PATH)) {
-                if (isset($url['path']) && substr($parts['path'], 0, 1) !== '/') {
+                if (isset($url['path']) && strpos($parts['path'], '/') !== 0) {
                     // Workaround for trailing slashes
                     $url['path'] .= 'a';
                     $url['path'] = rtrim(
@@ -120,7 +120,7 @@ if (!function_exists('http_build_url')) {
             }
         }
 
-        if (isset($url['path']) && $url['path'] !== '' && substr($url['path'], 0, 1) !== '/') {
+        if (isset($url['path']) && $url['path'] !== '' && strpos($url['path'], '/') !== 0) {
             $url['path'] = '/' . $url['path'];
         }
 
@@ -176,6 +176,6 @@ if (!function_exists('http_build_url')) {
 if (!function_exists('is_uuid')) {
     function is_uuid($uuid)
     {
-        return preg_match('/[a-f0-9]{8}\-[a-f0-9]{4}\-[a-f0-9]{4}\-(8|9|a|b)[a-f0-9]{3}\-[a-f0-9]{12}/i', $uuid) == 1;
+        return preg_match('/[a-f0-9]{8}\-[a-f0-9]{4}\-[a-f0-9]{4}\-(8|9|a|b)[a-f0-9]{3}\-[a-f0-9]{12}/i', $uuid) === 1;
     }
 }

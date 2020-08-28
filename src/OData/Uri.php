@@ -50,7 +50,7 @@ class Uri
      */
     public function __construct($uri = null)
     {
-        if ($uri == null) return;
+        if ($uri === null) return;
         $uriParsed = parse_url($uri);
         $this->parsed = $uriParsed;
         foreach($this->uriParts as $uriPart) {
