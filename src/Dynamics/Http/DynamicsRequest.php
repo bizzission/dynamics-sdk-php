@@ -151,7 +151,7 @@ class DynamicsRequest
     public function setReturnType($returnClass)
     {
         $this->returnType = $returnClass;
-        if (strcasecmp($this->returnType, 'stream') == 0) {
+        if (strcasecmp($this->returnType, 'stream') === 0) {
             $this->returnsStream  = true;
         } else {
             $this->returnsStream = false;
@@ -351,7 +351,7 @@ class DynamicsRequest
             $client = $this->createGuzzleClient();
         }
         try {
-            $file = fopen($path, 'w');
+            $file = fopen($path, 'wb');
 
             $client->request(
                 $this->requestType, 
@@ -384,7 +384,7 @@ class DynamicsRequest
             $client = $this->createGuzzleClient();
         }
         try {
-            $file = fopen($path, 'r');
+            $file = fopen($path, 'rb');
             // TODO: Needs a fix here
             $stream = \GuzzleHttp\Psr7\stream_for($file);
             $this->requestBody = $stream;
