@@ -303,7 +303,7 @@ class ODataRequest implements IODataRequest
      */
     private function getDefaultHeaders()
     {
-        $headers = array(
+        return array(
             //RequestHeader::HOST => $this->client->getBaseUrl(),
             RequestHeader::CONTENT_TYPE => 'application/json',
             RequestHeader::ODATA_MAX_VERSION => Constants::MAX_ODATA_VERSION,
@@ -312,7 +312,6 @@ class ODataRequest implements IODataRequest
             RequestHeader::USER_AGENT => 'odata-sdk-php-' . Constants::SDK_VERSION,
             //RequestHeader::AUTHORIZATION => 'Bearer ' . $this->accessToken
         );
-        return $headers;
     }
 
     /**

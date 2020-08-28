@@ -191,6 +191,7 @@ class Entity implements ArrayAccess
      * @param array $properties A list of properties to set
      *
      * @return Entity
+     * @throws MassAssignmentException
      */
     function __construct($properties = array())
     {
@@ -289,8 +290,9 @@ class Entity implements ArrayAccess
     /**
      * Fill the model with an array of properties. Force mass assignment.
      *
-     * @param  array  $properties
+     * @param array $properties
      * @return $this
+     * @throws MassAssignmentException
      */
     public function forceFill(array $properties)
     {

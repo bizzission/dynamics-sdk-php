@@ -15,6 +15,8 @@
 */
 namespace SaintSystems\OData\Core;
 
+use ReflectionClass;
+use ReflectionException;
 use SaintSystems\OData\Exception\ApplicationException;
 
 /**
@@ -40,6 +42,7 @@ abstract class Enum
      * @param string $value The value of the enum
      *
      * @throws ApplicationException
+     * @throws ReflectionException
      */
     public function __construct($value)
     {
@@ -54,6 +57,7 @@ abstract class Enum
      *
      * @param string $value
      * @return bool the enum has the value
+     * @throws ReflectionException
      */
     public function has($value)
     {
@@ -76,6 +80,7 @@ abstract class Enum
      * Create a new class for the enum in question
      *
      * @return mixed
+     * @throws ReflectionException
      */
     public function toArray()
     {
@@ -83,7 +88,7 @@ abstract class Enum
 
         if (!(array_key_exists($class, self::$constants)))
         {
-            $reflectionObj = new \ReflectionClass($class);
+            $reflectionObj = new ReflectionClass($class);
             self::$constants[$class] = $reflectionObj->getConstants();
         }
         return self::$constants[$class];

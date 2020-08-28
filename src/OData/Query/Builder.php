@@ -241,9 +241,10 @@ class Builder
      * @param string $operator
      * @param string $second
      * @param string $type
-     * @param bool   $ref
-     * @param bool   $count
+     * @param bool $ref
+     * @param bool $count
      *
+     * @param bool $where
      * @return $this
      */
     public function expand($property, $first, $operator = null, $second = null, $type = 'inner', $ref = false, $count = false, $where = false)

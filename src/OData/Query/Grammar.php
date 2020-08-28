@@ -198,8 +198,7 @@ class Grammar implements IGrammar
      * Compile the "$select=" portion of the OData query.
      *
      * @param Builder $query
-     * @param array   $properties
-     *
+     * @param $expands
      * @return string|null
      */
     protected function compileExpand(Builder $query, $expands)

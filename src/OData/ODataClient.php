@@ -53,9 +53,10 @@ class ODataClient implements IODataClient
 
     /**
      * Constructs a new ODataClient.
-     * @param string                  $baseUrl                The base service URL.
+     * @param string $baseUrl The base service URL.
      * @param IAuthenticationProvider $authenticationProvider The IAuthenticationProvider for authenticating request messages.
-     * @param IHttpProvider|null      $httpProvider           The IHttpProvider for sending requests.
+     * @param IHttpProvider|null $httpProvider The IHttpProvider for sending requests.
+     * @throws ODataException
      */
     public function __construct(
         $baseUrl,
@@ -203,9 +204,10 @@ class ODataClient implements IODataClient
      * Run a GET HTTP request against the service.
      *
      * @param string $requestUri
-     * @param array  $bindings
+     * @param array $bindings
      *
      * @return IODataRequest
+     * @throws ODataException
      */
     public function get($requestUri, $bindings = array())
     {
